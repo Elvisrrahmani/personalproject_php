@@ -37,7 +37,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <meta charset="utf-8">
 <title><?= $id ? 'Edit' : 'New' ?> Task</title>
 <link rel="stylesheet" href="style.css">
-</head><body>
+</head>
+<body class="page-body form-page">
 <header class="topbar">
   <h1>PROJECT.FLUX <span>/ <?= $id ? 'EDIT' : 'NEW' ?></span></h1>
   <nav><a href="index.php">← Board</a></nav>

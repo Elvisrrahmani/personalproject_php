@@ -35,8 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Register — Kanban</title>
    <link rel="stylesheet" href="style.css">
 </head>
-<body class="auth-body">
-    <div class="auth-card">
+<body class="auth-body register-page">
+    <div class="auth-card register-card">
         <h1>Register</h1>
         <p class="auth-sub">Create a new account</p>
 
@@ -44,11 +44,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php if ($success): ?><div class="auth-success"><?= htmlspecialchars($success) ?></div><?php endif; ?>
 
         <form method="POST">
-            <label>Username</label>
-            <input type="text" name="username" required>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" autocomplete="username" required>
 
-            <label>Password</label>
-            <input type="password" name="password" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" autocomplete="new-password" required>
 
             <button type="submit" class="btn-primary">Create account</button>
         </form>

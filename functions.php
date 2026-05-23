@@ -1,5 +1,4 @@
 <?php
-// functions.php
 function e($s) { return htmlspecialchars($s ?? '', ENT_QUOTES, 'UTF-8'); }
 
 function getTasks(PDO $pdo, string $status = null): array {

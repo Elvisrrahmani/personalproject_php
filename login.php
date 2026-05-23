@@ -29,8 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Login — Kanban</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="auth-body">
-    <div class="auth-card">
+<body class="auth-body login-page">
+    <div class="auth-card login-card">
         <h1>Sign in</h1>
         <p class="auth-sub">Access your kanban board</p>
 
@@ -39,11 +39,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endif; ?>
 
         <form method="POST">
-            <label>Username</label>
-            <input type="text" name="username" required autofocus>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" autocomplete="username" required autofocus>
 
-            <label>Password</label>
-            <input type="password" name="password" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" autocomplete="current-password" required>
 
             <button type="submit" class="btn-primary">Sign in</button>
         </form>

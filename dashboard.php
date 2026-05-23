@@ -10,7 +10,8 @@ $pct = fn($n) => $s['total'] ? round($n*100/$s['total']) : 0;
 <!doctype html><html><head>
 <meta charset="utf-8"><title>Dashboard</title>
 <link rel="stylesheet" href="style.css">
-</head><body>
+</head>
+<body class="page-body dashboard-page">
 <header class="topbar">
   <h1>PROJECT.FLUX <span>/ DASHBOARD</span></h1>
   <nav><a href="index.php">Board</a><a href="dashboard.php" class="active">Dashboard</a></nav>

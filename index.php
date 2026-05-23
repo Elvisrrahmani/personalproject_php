@@ -25,6 +25,7 @@ $columns = ['backlog'=>'Backlog','active'=>'Active','resolved'=>'Resolved'];
 <title>Project.Flux — Kanban (PHP)</title>
 <link rel="stylesheet" href="style.css">
 </head>
+<body class="page-body board-page">
 <header class="topbar">
     <div class="topbar-left">
         <strong>KANBAN</strong>
@@ -35,7 +36,6 @@ $columns = ['backlog'=>'Backlog','active'=>'Active','resolved'=>'Resolved'];
         <a href="logout.php" class="btn-ghost">Logout</a>
     </div>
 </header>
-<body>
 <header class="topbar">
   <h1>PROJECT.FLUX <span>/ KANBAN</span></h1>
   <nav>
