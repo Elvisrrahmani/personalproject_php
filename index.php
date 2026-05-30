@@ -56,23 +56,38 @@ $columns = ['backlog'=>'Backlog','active'=>'Active','resolved'=>'Resolved'];
     </div>
 
     <?php foreach (getTasks($pdo, $key) as $t): ?>
-      <article class="card <?= $t['urgent'] ? 'urgent' : '' ?>"
-               draggable="true"
-               ondragstart="drag(event,<?= $t['id'] ?>)">
-        <div class="card-head">
-          <span class="code"><?= e($t['code']) ?></span>
-          <?php if ($t['urgent']): ?><span class="badge">URGENT</span><?php endif; ?>
-        </div>
-        <h3><?= e($t['title']) ?></h3>
-        <div class="meta">
-          <span><?= e($t['assignee']) ?></span>
-          <span><?= e($t['due']) ?></span>
-        </div>
-        <div class="actions">
-          <a href="form.php?id=<?= $t['id'] ?>">Edit</a>
-          <a href="?delete=<?= $t['id'] ?>" onclick="return confirm('Delete?')">Delete</a>
-        </div>
-      </article>
+      <?php if ($key === 'resolved'): ?>
+        <article class="card solved"
+                 draggable="true"
+                 ondragstart="drag(event,<?= $t['id'] ?>)">
+          <div class="solved-display">
+            <h3><?= e($t['title']) ?></h3>
+            <span class="solved-text">✓ SOLVED</span>
+          </div>
+          <div class="actions">
+            <a href="form.php?id=<?= $t['id'] ?>">Edit</a>
+            <a href="?delete=<?= $t['id'] ?>" onclick="return confirm('Delete?')">Delete</a>
+          </div>
+        </article>
+      <?php else: ?>
+        <article class="card <?= $t['urgent'] ? 'urgent' : '' ?> <?= isOverdue($t['due']) ? 'overdue' : '' ?>"
+                 draggable="true"
+                 ondragstart="drag(event,<?= $t['id'] ?>)">
+          <div class="card-head">
+            <span class="code"><?= e($t['code']) ?></span>
+            <?php if (isOverdue($t['due'])): ?><span class="badge overdue-badge">OVERDUE</span><?php elseif ($t['urgent']): ?><span class="badge">URGENT</span><?php endif; ?>
+          </div>
+          <h3><?= e($t['title']) ?></h3>
+          <div class="meta">
+            <span><?= e($t['assignee']) ?></span>
+            <span><?= e($t['due']) ?></span>
+          </div>
+          <div class="actions">
+            <a href="form.php?id=<?= $t['id'] ?>">Edit</a>
+            <a href="?delete=<?= $t['id'] ?>" onclick="return confirm('Delete?')">Delete</a>
+          </div>
+        </article>
+      <?php endif; ?>
     <?php endforeach; ?>
   </section>
 <?php endforeach; ?>

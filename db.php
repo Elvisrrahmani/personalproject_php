@@ -21,6 +21,7 @@ try {
             id INT AUTO_INCREMENT PRIMARY KEY,
             username VARCHAR(255) NOT NULL UNIQUE,
             password_hash VARCHAR(255) NOT NULL,
+            is_admin TINYINT(1) NOT NULL DEFAULT 0,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4"
     );
@@ -40,4 +41,17 @@ try {
     );
 } catch (PDOException $e) {
     echo("DB connection failed: " . $e->getMessage());
+}
+    
+// Ensure `is_admin` column exists for older databases
+try {
+    $colStmt = $pdo->prepare(
+        "SELECT COUNT(*) FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = ? AND TABLE_NAME = 'users' AND COLUMN_NAME = 'is_admin'"
+    );
+    $colStmt->execute([$dbname]);
+    if (!(int)$colStmt->fetchColumn()) {
+        $pdo->exec("ALTER TABLE users ADD COLUMN is_admin TINYINT(1) NOT NULL DEFAULT 0");
+    }
+} catch (PDOException $e) {
+    // Migration failed — don't break app startup, but admin column may be missing
 }

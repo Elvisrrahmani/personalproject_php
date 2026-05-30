@@ -53,6 +53,12 @@ function moveTask(PDO $pdo, int $id, string $status): void {
     $stmt->execute([$status, $id]);
 }
 
+function isOverdue(string $dueDate = null): bool {
+    if (!$dueDate) return false;
+    return strtotime($dueDate) < strtotime('today');
+}
+
+
 function dashboardStats(PDO $pdo): array {
     $stmt = $pdo->query("SELECT status, COUNT(*) c FROM tasks GROUP BY status");
     $counts = ['backlog'=>0,'active'=>0,'resolved'=>0];

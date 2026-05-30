@@ -2,6 +2,7 @@
 require 'db.php';
 require 'auth.php';
 requireLogin();
+requireAdmin();
 $userId = currentUserId();
 require 'functions.php';
 $s = dashboardStats($pdo);

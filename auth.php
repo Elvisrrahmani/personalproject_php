@@ -15,3 +15,15 @@ function currentUserId() {
 function currentUsername() {
     return $_SESSION['username'] ?? '';
 }
+
+function isAdmin() {
+    return !empty($_SESSION['is_admin']);
+}
+
+function requireAdmin() {
+    if (!isAdmin()) {
+        header('Location: index.php');
+        exit;
+    }
+}
+
