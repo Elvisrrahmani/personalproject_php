@@ -18,7 +18,7 @@ if (isset($_GET['delete'])) {
 
 $columns = ['backlog'=>'Backlog','active'=>'Active','resolved'=>'Resolved'];
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">

@@ -43,7 +43,6 @@ try {
     echo("DB connection failed: " . $e->getMessage());
 }
     
-// Ensure `is_admin` column exists for older databases
 try {
     $colStmt = $pdo->prepare(
         "SELECT COUNT(*) FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = ? AND TABLE_NAME = 'users' AND COLUMN_NAME = 'is_admin'"
@@ -53,5 +52,5 @@ try {
         $pdo->exec("ALTER TABLE users ADD COLUMN is_admin TINYINT(1) NOT NULL DEFAULT 0");
     }
 } catch (PDOException $e) {
-    // Migration failed — don't break app startup, but admin column may be missing
+    echo("DB schema update failed: " . $e->getMessage());
 }

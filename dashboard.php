@@ -8,7 +8,8 @@ require 'functions.php';
 $s = dashboardStats($pdo);
 $pct = fn($n) => $s['total'] ? round($n*100/$s['total']) : 0;
 ?>
-<!doctype html><html><head>
+
+<!DOCTYPE html><html><head>
 <meta charset="utf-8"><title>Dashboard</title>
 <link rel="stylesheet" href="style.css">
 </head>
